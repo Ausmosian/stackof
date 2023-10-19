@@ -1,0 +1,76 @@
+Topic {
+	string id;
+  string name;
+}
+
+User {
+	string id;
+  string username;
+  List<Topics> subscribedTopics;
+  List<Comment> commentsMade;
+  List<Question> questions;
+}
+
+Question {
+	string id;
+  string questionText;
+  User askedBy;
+  List<Topic> topics;
+  List<Answer> answers;
+  boolean isAnswered;
+  DateTime askedOn;
+}
+
+Answer {
+	string id;
+  string answerText;
+  User answeredBy;
+  Question question;
+  boolean isAccepted;
+  int upvotes;
+  DateTime answeredOn
+  List<Comment> commentsRecieved;
+}
+
+Comment {
+	stirng id;
+  string commentText;
+  User commentedBy;
+  Answer commentedOn;
+  DateTime commentOn;
+}
+
+Admin Service {
+	addTopic(string name);
+}
+
+User Service {
+	subscribe(List<Topic>);
+  unSubscribe(List<Topic>);
+}
+
+Feed Service {
+	showFeedByTopic(User, Topic);
+    showFeed(User);
+  showFeedAnswered(User);
+  showFeedUnAnswered(User);
+}
+
+Question Service {
+	addQuestion(User, List<Topic>, questionText);
+  ?showQuestion(User, Question);
+}
+
+Answer Service {
+	answerQuestion(User, Question, answerText);
+  acceptAnswer(User, Question, Answer);
+  showAnswers(User, Question);
+}
+
+Comment Service {
+	addComment(User, Answer);
+  showComments(Answer);
+}
+
+
+Can we put Set<Topic> in User?
